@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>APR 18, 2020</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 18px;
+            font-family: Helvetica, Tahoma, Geneva, Verdana, sans-serif;
+            --SPACING_BASE: 10px;
+            --BACKGROUND_COLOR: white;
+            --MAIN_HEADING_COLOR: black;
+            --SUB_HEADING_COLOR: rgb(59, 116, 240);
+            --DETAILS_COLOR: grey;
+            --GREY: rgba(0, 0, 0, 0.1);
+            --WIDTH: calc(90vw/6);
+        }
+
+        input[type="button"] {
+            background: var(--SUB_HEADING_COLOR);
+            color: white;
+            height: calc(3*var(--SPACING_BASE));
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            position: relative;
+            top: var(--SPACING_BASE);
+            border-radius: 10px;
+            border: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr repeat(12, minmax(auto, 140px));
+            grid-template-rows: auto;
+        }
+
+        nav {
+            grid-column: span 12;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav .menu {
+            display: block;
+        }
+
+        nav .logo {
+            display: block;
+        }
+
+        .sidepanel {
+            grid-column: span 1;
+            grid-row: 1/-1;
+            padding: calc(3*var(--SPACING_BASE));
+            border-right: 1px solid var(--GREY);
+        }
+
+        .sidepanel input[type="text"] {
+            border: 1px solid var(--GREY);
+            padding: calc(0.5* var(--SPACING_BASE));
+            border-radius: 10px;
+        }
+
+
+        .sidepanel ul {
+            display: flex;
+            padding: calc(2*var(--SPACING_BASE)) 0;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .sidepanel ul li {
+            list-style: none;
+            padding: var(--SPACING_BASE);
+        }
+
+        .sidepanel ul li:hover {
+            background: var(--GREY);
+            border-radius: 10px;
+        }
+
+        .sidepanel>ul>li::before {
+            content: '';
+            box-sizing: border-box;
+            padding: 6px 16px;
+            margin-right: 10px;
+            border-radius: 10px;
+            background: var(--SUB_HEADING_COLOR);
+        }
+
+        footer {
+            border-top: 1px solid var(--GREY);
+            padding-top: calc(2*var(--SPACING_BASE));
+        }
+
+        .masonry {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(12, minmax(auto, 140px));
+            grid-template-rows: repeat(auto, minmax(auto, 90px));
+            margin: 0 calc(4* var(--SPACING_BASE));
+
+        }
+
+        .masonry__row {
+            grid-column: span 12;
+            margin-bottom: calc(4*var(--SPACING_BASE));
+        }
+
+        .masony__row--big {
+            grid-row: span 2;
+        }
+
+        .masonry__row--small {
+            grid-row: span 1;
+        }
+
+        .masonry__row__header {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--SUB_HEADING_COLOR);
+            padding: var(--SPACING_BASE) 0;
+        }
+
+        .masonry__row__header--big {
+            border-bottom: 1px solid var(--DETAILS_COLOR);
+            margin-bottom: calc(4*var(--SPACING_BASE));
+        }
+
+        .masonry__row__header--small {
+            border-top: 1px solid var(--DETAILS_COLOR);
+            font-size: 1.5rem;
+        }
+
+        .masonry__row__body {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(auto, var(--WIDTH)));
+            height: 100%;
+            grid-gap: calc(2*var(--SPACING_BASE));
+            overflow-x: scroll;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .masonry__row__body__item {
+            grid-column: span 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .masonry__row__body__item img {
+            object-fit: cover;
+            background: var(--GREY);
+            height: calc(0.8 * var(--WIDTH));
+            width: calc(0.8 * var(--WIDTH));
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+
+        .masonry__row__body__item img.big {
+            margin-top: calc(3*var(--SPACING_BASE));
+            max-width: 550px;
+            width: 100%;
+
+        }
+
+        .masonry__row__body__item img:hover {
+            filter: grayscale(50%);
+        }
+
+        .masonry__row__body__item>h2 {
+            font-size: 0.8rem;
+            color: var(--MAIN_HEADING_COLOR);
+        }
+
+        .masonry__row__body__item>h3 {
+            color: var(--DETAILS_COLOR);
+            font-size: 0.8rem;
+        }
+
+        .masonry__row__body__item--big {
+            grid-column: span 2;
+            display: flex;
+        }
+
+        .masonry__row__body__item--big>h2 {
+            color: var(--SUB_HEADING_COLOR);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .masonry__row__body__item--big>h3 {
+            font-size: 1.5rem;
+            color: black;
+            font-weight: 600;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+
+        }
+
+
+        @media screen and (min-width: 1200px) {
+            nav {
+                justify-content: flex-end;
+            }
+
+            nav .menu,
+            nav .logo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <aside class="sidepanel">
+            <input type="text" placeholder="Search" />
+            <ul>
+                <li>For You</li>
+                <li>Browse</li>
+                <li>Radio</li>
+            </ul>
+            <footer>
+                Some Footer Crap
+            </footer>
+        </aside>
+        <main class="masonry">
+            <nav>
+                <span class="menu">Menu</span>
+                <span class="logo">Music</span>
+                <input type="button" class="signin" value="Sign In"></input>
+            </nav>
+            <section class="masonry__row masony__row--big">
+                <h1 class="masonry__row__header masonry__row__header--big">Browse</h1>
+                <div class="masonry__row__body">
+                    <article class="masonry__row__body__item masonry__row__body__item--big">
+                        <h2>Some text</h2>
+                        <h3>Some more text goes here.</h3>
+                        <img src="./images/tile1.jpg" alt="an image" class="big" />
+
+                    </article>
+                    <article class="masonry__row__body__item masonry__row__body__item--big">
+                        <h2>Some text</h2>
+                        <h3>Some more text goes here.</h3>
+                        <img src="./images/tile2.jpg" alt="an image" class="big" />
+
+                    </article>
+
+                    <article class="masonry__row__body__item masonry__row__body__item--big">
+                        <h2>Some text</h2>
+                        <h3>Some more text goes here.</h3>
+                        <img src="./images/tile3.jpg" alt="an image" class="big" />
+
+                    </article>
+                </div>
+            </section>
+            <section class="masonry__row masony__row--small">
+                <h1 class="masonry__row__header masonry__row__header--small">Staples</h1>
+                <div class="masonry__row__body">
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile1.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile2.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile3.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile4.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile6.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile5.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                </div>
+            </section>
+            <section class="masonry__row masony__row--small">
+                <h1 class="masonry__row__header masonry__row__header--small">Topical</h1>
+                <div class="masonry__row__body">
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile1.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile2.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile3.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile4.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile6.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile5.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                </div>
+            </section>
+            <section class="masonry__row masony__row--small">
+                <h1 class="masonry__row__header masonry__row__header--small">Zeitgeist</h1>
+                <div class="masonry__row__body">
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile1.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile2.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile3.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile4.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile6.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                    <article class="masonry__row__body__item">
+                        <img src="./images/tile5.jpg" alt="an image" />
+                        <h2>Some text</h2>
+                        <h3>Subtext</h3>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

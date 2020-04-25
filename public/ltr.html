@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>APR 10, 2020</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            --PADDING: 10px;
+            --MARGIN: 10px;
+            --BACKGROUND_COLOR: #F3F3F3;
+            --CARD_COLOR: white;
+            --OUTLINE_COLOR: rgba(0, 0, 0, 0.1);
+            --PRIMARY_COLOR: black;
+            --TILE-WIDTH: calc(1920px/8);
+        }
+
+        body {
+            background-image: url("./images/fw2.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2rem;
+            color: var(--CARD_COLOR);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 5vh 10vh 45vh 30vh 10vh;
+        }
+
+        .notifications {
+            grid-row: 2/3;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 50px;
+        }
+
+
+
+        nav {
+            display: flex;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            grid-row: 4/5;
+            align-items: center;
+            padding-left: 100px;
+
+        }
+
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tile {
+            min-width: var(--TILE-WIDTH);
+            height: var(--TILE-WIDTH);
+            margin: 20px;
+            border: 2px solid black;
+            transition: transform 0.2s linear 0s;
+            background: palegreen;
+            overflow: hidden;
+            z-index: 1;
+
+        }
+
+
+        .tile img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .tile:hover {
+            transform: scale(1.1);
+            transform-origin: center;
+        }
+
+        .slideup {
+            top: 100%;
+            position: relative;
+            background: white;
+            height: 100%;
+            width: 100%;
+            z-index: 5;
+            transition: all 0.5s ease-in 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tile:hover>.slideup {
+            top: 0;
+        }
+
+        .tile:focus {
+            border-color: palevioletred;
+        }
+
+
+
+
+
+
+        .tile:hover~.tile {
+            transform: translateX(10px);
+            z-index: 0
+        }
+
+        .details {
+            display: flex;
+            width: 100vw;
+            height: 25vw;
+            background: white;
+            z-index: 5;
+            top: 100%;
+            position: relative;
+            transition: all 0.5s ease-in 0;
+        }
+
+        .notifications:hover>.details {
+            top: -5%;
+        }
+
+        .spacer {
+            width: 200px;
+        }
+
+        .notifications__grid {
+            --NOTIFICATION_WIDTH: 50px;
+            display: grid;
+            grid-template-columns: repeat(9, var(--NOTIFICATION_WIDTH));
+            grid-template-rows: repeat(2, var(--NOTIFICATION_WIDTH));
+            color: white;
+            font-weight: bold;
+        }
+
+        .notifications__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 150px;
+        }
+
+        .notifications__grid__icon {
+            grid-column: span 2;
+            grid-row: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            background-color: white;
+            border-radius: 5px;
+            height: calc(var(--NOTIFICATION_WIDTH) / 1.3);
+            width: calc(var(--NOTIFICATION_WIDTH) /1.3);
+            margin-right: 10px;
+            transition: transform 0.5s ease-in-out 0;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .icon--primary {
+            background: palegreen;
+        }
+
+        .icon--secondary {
+            background: paleturquoise
+        }
+
+        .icon--tertiary {
+            background: palegoldenrod
+        }
+
+        .notifications__grid__summary {
+            display: flex;
+            justify-content: center;
+            font-size: 1.5rem;
+            align-items: flex-start;
+            flex-direction: column;
+            grid-column: span 3;
+            grid-row: span 2;
+        }
+
+        .subheading {
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="gutter--top"></div>
+        <div class="notifications">
+            <div class="notifications__container">
+                <h1>9:59 PM</h1>
+            </div>
+            <div class="notifications__container">
+                <h1>Some text</h1>
+            </div>
+            <div class="notifications__grid">
+                <div class="notifications__grid__icon">
+                    <div class="icon icon--primary"></div>
+                    <h1>11</h1>
+                </div>
+                <div class="notifications__grid__icon">
+                    <div class="icon icon--secondary"></div>
+                    <h1>5</h1>
+                </div>
+                <div class="notifications__grid__icon">
+                    <div class="icon icon--tertiary"></div>
+                </div>
+                <div class="notifications__grid__summary">
+                    Bruce Wayne<br />
+                    <span class="subheading">Numbers</span>
+                </div>
+            </div>
+        </div>
+
+
+        <nav>
+            <div class="tile">
+                <img src="./images/tile1.jpg"></img>
+                <div class="slideup">One</div>
+            </div>
+            <div class="tile">
+                <img src="./images/tile2.jpg"></img>
+                <div class="slideup">Two</div>
+            </div>
+            <div class="tile">
+                <img src="./images/tile3.jpg"></img>
+                <div class="slideup">Three</div>
+            </div>
+            <div class="tile">
+                <img src="./images/tile4.jpg"></img>
+                <div class="slideup">Four</div>
+            </div>
+            <div class="tile">
+                <img src="./images/tile5.jpg"></img>
+                <div class="slideup">five</div>
+            </div>
+            <div class="tile">
+                <img src="./images/tile6.jpg"></img>
+                <div class="slideup">six</div>
+            </div>
+            <div class="tile">
+                7
+            </div>
+            <div class="tile">
+                8
+            </div>
+            <div class="tile">
+                9
+            </div>
+            <div class="tile">
+                10
+            </div>
+            <div class="tile">
+                11
+            </div>
+            <div class="spacer">
+                &nbsp;
+            </div>
+        </nav>
+
+
+    </div>
+    <section class="details">
+        asd
+    </section>
+
+
+    <script type="text/javascript">
+
+    </script>
+</body>
+
+
+</html>

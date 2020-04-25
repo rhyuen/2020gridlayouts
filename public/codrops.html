@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>APR 21, 2020</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 18px;
+            font-family: Helvetica, sans-serif;
+            margin: 0;
+            --NUM_GRID_COL: 6;
+            --SPACE_BASE: 20px;
+            --SUBTITLE_COLOR: #f5f5f5;
+            --PRIMARY_COLOR: black;
+            --PURPLE: rgb(89, 55, 211);
+        }
+
+        ::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        body {
+            min-height: 100vh;
+            background: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(10px, 1fr) repeat(var(--NUM_GRID_COL), minmax(auto, 110px)) minmax(10px, 1fr);
+            grid-template-rows: 10vh 1fr;
+
+        }
+
+        nav {
+            display: grid;
+            grid-template-columns: minmax(10px, 1fr) repeat(var(--NUM_GRID_COL), minmax(auto, 110px)) minmax(10px, 1fr);
+            grid-column: 1/-1;
+            justify-content: center;
+            grid-row: 1/2;
+            background: var(--PURPLE);
+
+        }
+
+        nav .content {
+            display: flex;
+            grid-column: 2/span var(--NUM_GRID_COL);
+            align-items: center;
+        }
+
+        nav .content ul {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .home {
+            width: 80px;
+            padding: 5px;
+            background: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--PURPLE);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: var(--SPACE_BASE);
+        }
+
+        .home:hover {
+            color: palevioletred;
+        }
+
+        a.icon__media {
+            content: "a";
+            color: white;
+            padding-bottom: 100%;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+
+        a.icon__media:hover {
+            color: palevioletred
+        }
+
+
+
+        .content ul li {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: var(--SPACE_BASE);
+            color: white;
+            cursor: pointer;
+        }
+
+        .content ul li:hover {
+            color: palevioletred;
+        }
+
+        main {
+            margin-top: calc(3*var(--SPACE_BASE));
+            grid-column: 2/span var(--NUM_GRID_COL);
+            display: grid;
+            grid-template-columns: repeat(var(--NUM_GRID_COL), minmax(auto, 110px));
+        }
+
+        .left {
+            display: none;
+            grid-column: span 3
+        }
+
+        main ul.feed {
+            grid-column: span 6;
+        }
+
+        .right {
+            display: none;
+            grid-column: span 3;
+        }
+
+        ul.feed {
+            width: 100%;
+        }
+
+        .feed .post {
+            margin: calc(2*var(--SPACE_BASE)) calc(4*var(--SPACE_BASE));
+            margin-top: 0;
+        }
+
+        .post article {
+            display: flex;
+        }
+
+        .post__header {
+            font-weight: bold;
+            color: var(--PRIMARY_COLOR);
+            font-size: 1.2rem;
+        }
+
+        .post__header--aside {
+            font-size: 0.9rem;
+        }
+
+        .post__subheader {
+            font-size: 0.8rem;
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        .card__cta {
+            line-height: 1.5;
+            font-size: 0.8rem;
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        .post__image {
+            height: 100px;
+            object-fit: cover;
+            width: 100px;
+        }
+
+        .post__image:hover {
+            filter: grayscale(50%);
+        }
+
+        .post .post__description {
+            margin-left: var(--SPACE_BASE);
+        }
+
+        .post__body {
+            line-height: 1.5;
+            font-size: 0.8rem;
+            margin-bottom: calc(2*var(--SPACE_BASE));
+        }
+
+
+
+        .card {
+            padding: calc(2*var(--SPACE_BASE));
+            border-width: 3px;
+            border-color: var(--SUBTITLE_COLOR);
+            background: var(--SUBTITLE_COLOR);
+            margin-bottom: calc(2*var(--SPACE_BASE));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card__header {
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        .unicode--centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+        .card__subheader {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: var(--SPACE_BASE);
+            font-weight: normal;
+        }
+
+
+
+        .card__textinput {
+            margin-bottom: var(--SPACE_BASE);
+            padding: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: lowercase;
+            border: 0;
+        }
+
+        .more-margin-bottom {
+            margin-bottom: calc(2*var(--SPACE_BASE));
+        }
+
+        .card__textinput:focus {
+            outline: none
+        }
+
+        .card input[type="button"] {
+            background: var(--PRIMARY_COLOR);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            width: 50%;
+            border: 0;
+        }
+
+        .card--outline {
+            background-color: white;
+            border: 3px solid var(--SUBTITLE_COLOR);
+        }
+
+        a.link {
+            text-decoration: none;
+            color: var(--PRIMARY_COLOR);
+            font-size: 0.8rem;
+        }
+
+        a.link:visited {
+            color: var(--PRIMARY_COLOR);
+        }
+
+
+
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            * {
+                --NUM_GRID_COL: 9;
+            }
+
+            .left {
+                display: block;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            * {
+                --NUM_GRID_COL: 12;
+            }
+
+            .left,
+            .right {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <nav>
+            <div class="content">
+                <span class="home">Title</span>
+                <ul>
+                    <li>Tutorials</li>
+                    <li>Playground</li>
+                    <li>Articles</li>
+                    <li>Coollectective</li>
+                    <li>Reference</li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#" class="icon__media">&#9824;</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon__media">&#9829;</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon__media">&#9865;</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon__media">&#9944;</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon__media">&#9729;</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon__media">&#9864;</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <aside class="left" aria-label="ancilliary information almost like an ad">
+                <article class="card">
+                    <h1 class="card__header">Subscribe to me</h1>
+                    <p class="card__cta">A call to action and benefits for the patsy that signs up.</p>
+                    <input class="card__textinput" type="text" placeholder="email address">
+                    <input type="button" value="Subscrible">
+                </article>
+                <article class="card--outline card">
+                    <h1 class="card__header more-margin-bottom">The Latest and Greatest</h1>
+                    <ul>
+                        <li class="post">
+                            <article>
+                                <img class="post__image" src="/images/tile4.jpg">
+                                <div class="post__description">
+                                    <h1 class="post__header post__header--aside">An Awesome Title</h1>
+                                    <p class="post__subheader">April 21</p>
+                                    <p class="post__body">Revealed: Private firm running UK PPE stockpile was sold in
+                                        middle of pandemic
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="post">
+                            <article>
+                                <img class="post__image" src="/images/tile5.jpg">
+                                <div class="post__description">
+                                    <h1 class="post__header post__header--aside">An Awesome Title</h1>
+                                    <p class="post__subheader">April 33</p>
+                                    <p class="post__body">Revealed: Private firm running UK PPE stockpile was sold in
+                                        middle of pandemic
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="post">
+                            <article>
+                                <img class="post__image" src="/images/tile6.jpg">
+                                <div class="post__description">
+                                    <h1 class="post__header post__header--aside">An Awesome Title</h1>
+                                    <p class="post__subheader">April 21</p>
+                                    <p class="post__body">Revealed: Private firm running UK PPE stockpile was sold in
+                                        middle of pandemic
+                                    </p>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                    <a class="link" href="#">View All &rarr;</a>
+                </article>
+                <article class="card">
+                    <h1 class="card__header">Search me</h1>
+                    <p class="card__cta">Find the details on all the things here.</p>
+                    <input class="card__textinput more-margin-bottom" type="text"
+                        placeholder="eg: something of interest">
+                    <a class="link">All entries &rarr;</a>
+                </article>
+            </aside>
+            <ul class="feed">
+                <li class="post">
+                    <article>
+                        <img class="post__image" src="/images/tile1.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title</h1>
+                            <p class="post__subheader">By First Last on April 21</p>
+                        </div>
+                    </article>
+                </li>
+                <li class=" post">
+                    <article>
+                        <img class="post__image" src="/images/tile2.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title 2</h1>
+                            <p class="post__subheader">By First Last on April 21</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="post">
+                    <article>
+                        <img class="post__image" src="/images/tile4.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title 4</h1>
+                            <p class="post__subheader">By First Last on April 31</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="post">
+                    <article>
+                        <img class="post__image" src="/images/tile3.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title 3</h1>
+                            <p class="post__subheader">By First Last on April 21</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="post">
+                    <article>
+                        <img class="post__image" src="/images/tile5.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title 5</h1>
+                            <p class="post__subheader">By First Last on April 11</p>
+                        </div>
+                    </article>
+                </li>
+                <li class="post">
+                    <article>
+                        <img class="post__image" src="/images/tile6.jpg">
+                        <div class="post__description">
+                            <h1 class="post__header">An Awesome Title 6</h1>
+                            <p class="post__subheader">By First Last on April 21</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+            <aside class="right" aria-label="mostly empty space and or ads">
+                <article class="card">
+                    <p class="card__cta">A quantified value that provides a sort of referentical value as to how awesome
+                        this entity is.
+                    </p>
+                </article>
+            </aside>
+        </main>
+    </div>
+</body>
+
+</html>
