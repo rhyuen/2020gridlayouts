@@ -2,44 +2,89 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>a tracker is here.</title>
+    <style>
+        * {
+            font-family: "Segoe UI";
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav span {
+            font-weight: 800;
+            font-size: 25px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <p>
-        yes, there's tracker.
+    <main>
+        <section class="center">
+            <h1>Yes, there's tracker.</h1>
+            <nav>
+                <span>&#9776;</span>
 
-        <form onSubmit=handleForm>
-            <input type="text" name="username" /><br />
-            <input type="password" password="password" /><br />
-            <input type="submit" value="Login" />
-        </form>
-    </p>
+            </nav>
+            <form id="form">
+                <input type="text" name="username" /><br />
+                <input type="password" password="password" name="password" /><br />
+                <input type="submit" value="Login" />
+            </form>
+        </section>
+    </main>
+    <script type="text/javascript" src="https://royugraphql.netlify.app/tracker.js"></script>
     <script type="text/javascript">
-        function handleForm() {
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault();
             const username = document.getElementsByName("username")[0];
             const password = document.getElementsByName("password")[0];
 
+            console.log(username.value);
+            console.log(password.value);
+
             fetch("https://royugraphql.netlify.app/.netlify/functions/form", {
-                    username,
-                    password
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username: username.value,
+                        password: password.value
+                    })
                 })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res.path);
+                    console.log("cors")
                     console.log(res.payload);
                 }).catch(e => {
-                    console.error(e);
+                    console.log("cors post error");
+                    console.log(e)
                 });
-        }
+        });
 
 
 
-        fetch("https://royugraphql.netlify.app/.netlify/functions/logger").then(res => res.json())
+        fetch("https://royugraphql.netlify.app/.netlify/functions/logger")
+            .then(res => res.json())
             .then(res => {
+                console.log("cors get success.");
                 console.log(res.payload);
                 console.log(res.path);
             }).catch(e => {
+                console.log("cors get error");
                 console.error(e)
             });
     </script>

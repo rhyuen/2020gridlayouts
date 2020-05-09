@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <style>
+        * {
+            margin: 0;
+            --SPACE_BASE: 20px;
+            font-size: 16px;
+            --NUM_COL: 6;
+            --GRID_COMPOSITION: minmax(10px, 1fr) [content-start] repeat(var(--NUM_COL), minmax(auto, 100px)) [content-end] minmax(10px, 1fr);
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: var(--GRID_COMPOSITION);
+            grid-template-rows: 10vh 1fr;
+            min-height: 100vh;
+        }
+
+        nav {
+            grid-column: 1/-1;
+            background: lavender;
+            display: grid;
+            grid-template-columns: var(--GRID_COMPOSITION);
+            grid-row: 1/span 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav__container {
+            grid-column: content-start/content-end;
+        }
+
+        main {
+            grid-column: content-start/span 6;
+            background: papayawhip;
+        }
+
+        aside {
+            grid-column: span 3;
+            background: palevioletred;
+        }
+
+        .left {
+            display: none;
+        }
+
+        .right {
+            display: none;
+        }
+
+        article {
+            background-color: white;
+        }
+
+        .content {
+            margin: var(--SPACE_BASE);
+        }
+
+        @media screen and (min-width: 732px) and (max-width: 999px) {
+            * {
+                --NUM_COL: 9
+            }
+
+            main {
+                grid-column: content-start/span 6;
+            }
+
+            .right {
+                display: grid;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            * {
+                --NUM_COL: 12
+            }
+
+            main {
+                grid-column: span 6;
+            }
+
+            .left {
+                display: grid;
+                grid-column: content-start/span 3;
+            }
+
+            .right {
+                display: grid;
+                grid-column: span 3/content-end;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <nav>
+            <div class="nav__container">
+                <span>
+                    HOME
+                </span>
+                <span>
+                    ABOUT
+                </span>
+                <span>
+                    CONTACT
+                </span>
+            </div>
+        </nav>
+        <aside class="left">
+            left side
+        </aside>
+        <main>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>google</h1>
+                <p>perpetually second best.</p>
+            </article>
+            <article class="content">
+                <h1>bing</h1>
+                <p>perpetually third best.</p>
+            </article>
+            <article class="content">
+                <h1>yandex</h1>
+                <p>perpetually frouth best.</p>
+            </article>
+        </main>
+        <aside class="right">
+            right side
+        </aside>
+    </div>
+
+</body>
+
+</html>

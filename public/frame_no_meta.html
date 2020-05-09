@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8">    
+    <style>
+        * {
+            margin: 0;
+            --SPACE_BASE: 20px;
+            font-size: 16px;
+            --NUM_COL: 6;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns:
+                minmax(10px, 1fr) [content-start] repeat(var(--NUM_COL), minmax(auto, 100px)) [content-end] minmax(10px, 1fr);
+            grid-template-rows: 10vh 1fr;
+            min-height: 100vh;
+        }
+
+        nav {
+            grid-column: 1/-1;
+            background: lavender;
+            grid-row: 1/span 1;
+            display: flex;
+            align-items: center;
+        }
+
+        main {
+            grid-column: content-start/span 6;
+            background: papayawhip;
+        }
+
+        aside {
+            grid-column: span 3;
+            background: palevioletred;
+        }
+
+        .left {
+            display: none;
+        }
+
+        .right {
+            display: none;
+        }
+
+        .content {
+            margin: var(--SPACE_BASE);
+        }
+
+        @media screen and (min-width: 732px) and (max-width: 999px) {
+            * {
+                --NUM_COL: 9
+            }
+
+            main {
+                grid-column: content-start/span 6;
+            }
+
+            .right {
+                display: grid;
+            }
+        }
+
+        @media screen and (min-width: 1000px) {
+            * {
+                --NUM_COL: 12
+            }
+
+            main {
+                grid-column: span 6;
+            }
+
+            .left {
+                display: grid;
+                grid-column: content-start/span 3;
+            }
+
+            .right {
+                display: grid;
+                grid-column: span 3/content-end;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <nav>Nav</nav>
+        <aside class="left">
+            left side
+        </aside>
+        <main>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>google</h1>
+                <p>perpetually second best.</p>
+            </article>
+            <article class="content">
+                <h1>bing</h1>
+                <p>perpetually third best.</p>
+            </article>
+            <article class="content">
+                <h1>yandex</h1>
+                <p>perpetually frouth best.</p>
+            </article>
+        </main>
+        <aside class="right">
+            right side
+        </aside>
+    </div>
+
+</body>
+
+</html>
