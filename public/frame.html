@@ -8,57 +8,124 @@
     <style>
         * {
             margin: 0;
-            --SPACE_BASE: 20px;
             font-size: 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --SPACE_BASE: 20px;
+            --LAVENDER: #eff5ff;
+            --MINT: #e7fcf3;
+            --PEACH: #fff2ef;
+            --PRIMARY: #bdf2d8;
+            --TEXT: #1a194d;
             --NUM_COL: 6;
+            --GREY: rgba(0, 0, 0, 0.1);
             --GRID_COMPOSITION: minmax(10px, 1fr) [content-start] repeat(var(--NUM_COL), minmax(auto, 100px)) [content-end] minmax(10px, 1fr);
         }
 
+        /*
+        peach fff2ef
+        lavender eff5ff
+        mint e7fcf3
+        */
+
         body {
             min-height: 100vh;
+            margin: 0;
         }
 
         .grid {
             display: grid;
             grid-template-columns: var(--GRID_COMPOSITION);
-            grid-template-rows: 10vh 1fr;
+            grid-row-gap: var(--SPACE_BASE);
+            grid-template-rows: 10vh;
+            grid-auto-flow: row;
             min-height: 100vh;
         }
 
         nav {
             grid-column: 1/-1;
-            background: lavender;
-            display: grid;
-            grid-template-columns: var(--GRID_COMPOSITION);
+            background: var(--MINT);
             grid-row: 1/span 1;
-            display: flex;
-            align-items: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         .nav__container {
-            grid-column: content-start/content-end;
+            width: 1300px;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .nav__container li {
+            list-style-type: none;
+            margin-right: var(--SPACE_BASE);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            border-bottom: 5px solid transparent;
+        }
+
+        .nav__container li:hover {
+            border-bottom-color: var(--PRIMARY);
+        }
+
+        .nav__container li a {
+            color: var(--TEXT);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
         }
 
         main {
             grid-column: content-start/span 6;
-            background: papayawhip;
+            background: var(--PEACH);
         }
 
         aside {
-            grid-column: span 3;
-            background: palevioletred;
+            background: var(--LAVENDER);
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .left {
             display: none;
+            border-top-left-radius: 20px;
         }
 
         .right {
             display: none;
+            border-top-right-radius: 20px;
         }
 
         article {
             background-color: white;
+            border: 5px solid transparent;
+            border-radius: 20px;
+            padding: var(--SPACE_BASE);
+        }
+
+        article h1 {
+            color: var(--TEXT);
+            font-size: 1.5rem;
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        aside>h1 {
+            color: var(--TEXT);
+            font-size: 1.5rem;
+            margin: var(--SPACE_BASE);
+        }
+
+        aside>article {
+            background: inherit;
+        }
+
+        aside>article>p {
+            font-size: 0.9rem;
         }
 
         .content {
@@ -67,7 +134,7 @@
 
         @media screen and (min-width: 732px) and (max-width: 999px) {
             * {
-                --NUM_COL: 9
+                --NUM_COL: 9;
             }
 
             main {
@@ -76,12 +143,13 @@
 
             .right {
                 display: grid;
+                grid-column: span 3;
             }
         }
 
         @media screen and (min-width: 1000px) {
             * {
-                --NUM_COL: 12
+                --NUM_COL: 12;
             }
 
             main {
@@ -89,12 +157,12 @@
             }
 
             .left {
-                display: grid;
+                display: flex;
                 grid-column: content-start/span 3;
             }
 
             .right {
-                display: grid;
+                display: flex;
                 grid-column: span 3/content-end;
             }
 
@@ -105,20 +173,56 @@
 <body>
     <div class="grid">
         <nav>
-            <div class="nav__container">
-                <span>
-                    HOME
-                </span>
-                <span>
-                    ABOUT
-                </span>
-                <span>
-                    CONTACT
-                </span>
-            </div>
+            <ul class="nav__container">
+                <li>
+                    <a href="#">HOME</a>
+                </li>
+                <li>
+                    <a href="#">ABOUT</a>
+                </li>
+                <li>
+                    <a href="#">CONTACT</a>
+                </li>
+            </ul>
         </nav>
         <aside class="left">
-            left side
+            <h1>Contents</h1>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
         </aside>
         <main>
             <article class="content">
@@ -127,7 +231,10 @@
             </article>
             <article class="content">
                 <h1>google</h1>
-                <p>perpetually second best.</p>
+                <p>This is different from the exclusive content](./exclusive-content) and remove ads examples, where we
+                    bound monetizationstart. monetizationstart fires when Web Monetization initializes.
+                    monetizationprogress fires every time there's a micropayment from the Web Monetization provider to
+                    the site.</p>
             </article>
             <article class="content">
                 <h1>bing</h1>
@@ -139,7 +246,15 @@
             </article>
         </main>
         <aside class="right">
-            right side
+            <h1>Sponsors</h1>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
+            <article class="content">
+                <h1>mrugl</h1>
+                <p>Murp, herrasdf</p>
+            </article>
         </aside>
     </div>
 
