@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>colors</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI";
+            margin: 0;
+            --LAVENDER: #eff5ff;
+            --MINT: #e7fcf3;
+            --PEACH: #fff2ef;
+            --TEXT: #1a194d;
+            --SPACE_BASE: 20px;
+            color: var(--TEXT);
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            min-height: 100vh;
+            grid-template-rows: repeat(auto, minmax(auto, 100px));
+            grid-template-columns: minmax(10px, 1fr) [content-start] repeat(12, minmax(auto, 100px)) [content-end] minmax(10px, 1fr);
+        }
+
+        .center {
+            grid-column: content-start/content-end;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: var(--MINT);
+        }
+
+        .picture {
+            width: 500px;
+            height: 500px;
+            background: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            border-radius: 50%;
+        }
+
+        .button {
+            position: relative;
+            top: 50px;
+            background: white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            border: 1px solid rgb(0, 0, 0, 0.1);
+            box-shadow: 0 60px 20px 30px rgb(0, 0, 0, 0.05);
+        }
+
+        .center h2 {
+            color: rgb(0, 0, 0, 0.3);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .center h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: calc(2* var(--SPACE_BASE)) 0;
+            max-width: 350px;
+        }
+
+        .bar {
+            background-color: rgb(0, 0, 0, 0.1);
+            height: 10px;
+            margin-top: calc(8*var(--SPACE_BASE));
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="grid">
+        <div class="center">
+            <h2>00</h2>
+            <h1>Value One, <br /> Fact Two, <br /> Story three</h1>
+            <div class="picture">
+                <div class="button">&#8594;</div>
+            </div>
+            <div class="bar"></div>
+        </div>
+
+    </main>
+</body>
+
+</html>

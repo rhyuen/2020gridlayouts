@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>colors</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI";
+            margin: 0;
+            font-size: 18px;
+            --LAVENDER: #eff5ff;
+            --MINT: #e7fcf3;
+            --PEACH: #fff2ef;
+            --TEXT: #1a194d;
+            --SPACE_BASE: 20px;
+            --PURPLE: #5f5fff;
+            --PINK: #FF3E6c;
+            --BG: ##f8f9fa;
+            --ORANGE: #fd7e14;
+            color: var(--TEXT);
+            --NUM_COL: 6;
+            --FOOTER_COL: var(--TEXT);
+        }
+
+
+        a {
+            font-size: 1.5rem;
+            color: var(--TEXT);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        body {
+            min-height: 100vh;
+            width: 100%;
+            background-color: var(--BG);
+        }
+
+        button {
+            font-size: 1rem;
+            padding: calc(0.5*var(--SPACE_BASE)) var(--SPACE_BASE);
+            border-radius: 10px;
+            border: 2px solid var(--PINK);
+            color: white;
+            background: var(--PINK);
+            width: clamp(250px, 350px, 10vw);
+            font-weight: bold;
+            max-height: calc(3*var(--SPACE_BASE));
+            transition: background 0.2s ease-in 0s;
+            margin-right: var(--SPACE_BASE);
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        button.smaller {
+            transform: scale(0.8);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:hover {
+            background: white;
+            color: var(--PINK);
+        }
+
+        button.purple {
+            background: inherit;
+            border-color: var(--PURPLE);
+            color: var(--PURPLE);
+        }
+
+        button.purple:hover {
+            background: var(--PURPLE);
+            color: white;
+        }
+
+        button.nohover {
+            pointer-events: none;
+        }
+
+        button.orange {
+            color: var(--ORANGE);
+            background-color: #FFF;
+            border-color: var(--ORANGE);
+        }
+
+        button.marginnone {
+            margin: 0;
+        }
+
+        button.inverted {
+            background: white;
+            color: var(--PURPLE);
+            border-color: var(--PURPLE);
+        }
+
+        button.inverted:hover {
+            color: white;
+            background: var(--PINK);
+            border-color: var(--PINK);
+        }
+
+        .grid {
+            display: grid;
+            min-height: 100vh;
+            grid-template-rows: repeat(auto, minmax(auto, 100px));
+            grid-template-columns: minmax(10px, 1fr) [content-start] repeat(var(--NUM_COL), minmax(auto, 100px)) [content-end] minmax(10px, 1fr);
+        }
+
+        .content {
+            grid-column: content-start/content-end;
+            display: grid;
+            grid-template-columns: repeat(var(--NUM_COL), minmax(auto, 100px));
+            grid-template-rows: 5vh 10vh;
+            grid-auto-rows: 10vh;
+        }
+
+        nav {
+            margin-top: var(--SPACE_BASE);
+            grid-column: span var(--NUM_COL);
+            display: flex;
+            justify-content: space-between;
+            height: 5vh;
+            grid-row: span 1;
+            align-items: center;
+        }
+
+        .content__splash h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            color: text;
+            line-height: 1.5;
+            margin: var(--SPACE_BASE) 0;
+        }
+
+        .content__splash h2 {
+            font-size: 2rem;
+            font-style: normal;
+            color: rgba(0, 0, 0, 0.4);
+            margin: calc(2*var(--SPACE_BASE)) 0;
+            font-weight: 400;
+
+        }
+
+        .content__splash {
+            grid-column: span var(--NUM_COL);
+            grid-row: 3/span 11;
+        }
+
+        .content__pricing {
+            grid-column: span var(--NUM_COL);
+            grid-row: span 10;
+        }
+
+        .content__pricing>h1 {
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            margin-bottom: calc(4*var(--SPACE_BASE));
+        }
+
+        .content__responsive-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content__responsive-container--spaced-between {
+            justify-content: space-between;
+        }
+
+        .purple {
+            color: var(--PURPLE);
+        }
+
+        .pink {
+            color: var(--PINK);
+        }
+
+        .content__responsive-container__card {
+            padding: calc(2*var(--SPACE_BASE));
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: calc(2*var(--SPACE_BASE));
+        }
+
+        .bg--purple {
+            background: var(--PURPLE);
+        }
+
+        .text--white {
+            color: white;
+        }
+
+        .content__responsive-container__card h1 {
+            font-size: 2rem;
+            font-weight: bolder;
+            margin: var(--SPACE_BASE) 0;
+        }
+
+        .content__responsive-container__card h2 {
+            font-size: 1rem;
+        }
+
+        .content__responsive-container__card ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content__responsive-container__card li {
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        .content__responsive-container__card li:before {
+            content: "/";
+            margin-right: var(--SPACE_BASE);
+        }
+
+        footer {
+            background-color: var(--FOOTER_COL);
+            grid-column: 1/-1;
+            display: grid;
+            grid-template-columns: minmax(10px, 1fr) [footer-content-start] repeat(var(--NUM_COL), minmax(auto, 100px)) [footer-content-end] minmax(10px, 1fr);
+        }
+
+        .footer__ends {
+            grid-column: footer-content-start/footer-content-end;
+            display: flex;
+            justify-content: center;
+            margin: calc(2*var(--SPACE_BASE)) 0;
+        }
+
+        .footer__ends>h1 {
+            font-size: 3rem;
+        }
+
+        .foot {
+            margin: calc(4*var(--SPACE_BASE)) 0;
+            padding: calc(4*var(--SPACE_BASE)) 0;
+            border-top: 1px solid white;
+            grid-column: footer-content-start/footer-content-end;
+            color: white;
+        }
+
+        .gallery {
+            margin: calc(4*var(--SPACE_BASE)) 0;
+            grid-column: footer-content-start/footer-content-end;
+            justify-content: center;
+            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(auto, 250px));
+            grid-template-rows: repeat(auto, 200px);
+            grid-gap: var(--SPACE_BASE);
+            color: white;
+        }
+
+        .gallery__item {
+            grid-column: span 1;
+            border-radius: 10px;
+            grid-row: span 1;
+            margin-bottom: var(--SPACE_BASE);
+        }
+
+        .gallery__item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+        }
+
+        .gallery__item h1 {
+            margin-top: var(--SPACE_BASE);
+            color: white;
+        }
+
+
+        .foot h1 {
+            color: white;
+        }
+
+        .foot ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .foot li {
+            color: #6c757d;
+            font-weight: bold;
+            margin-top: var(--SPACE_BASE);
+        }
+
+        .foot li:hover {
+            color: white;
+        }
+
+        .foot__blurb {
+            max-width: clamp(100px, 200px, 300px);
+            margin-top: var(--SPACE_BASE);
+        }
+
+
+        @media screen and (min-width: 700px) and (max-width: 999px) {
+            * {
+                --NUM_COL: 9
+            }
+
+        }
+
+        @media screen and (min-width: 1000px) {
+            * {
+                --NUM_COL: 12;
+            }
+
+            .content__responsive-container {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <main class="content">
+            <nav>
+                <a href="/">Home.</a>
+                <button class="unlock purple marginnone smaller">Unlock</button>
+            </nav>
+            <section class="content__splash">
+                <h1>Something blah that does a thing bleh. The usual words.</h1>
+                <h2>A subtitle goes here that describes the above thing in slightly more detail but no promises.</h2>
+                <div class="content__responsive-container">
+                    <button class="">Buy for 1 BTC</button>
+                    <button class="purple ">Download for Free</button>
+                    <button class="nohover orange">Some Praise</button>
+                </div>
+            </section>
+            <section class="content__pricing">
+                <h1>Ready to give me money?</h1>
+                <div class="content__responsive-container content__responsive-container--spaced-between">
+                    <div class="content__responsive-container__card">
+                        <h2 class="purple">Simple Tier</h2>
+                        <h1 class="purple">Free</h1>
+                        <ul>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                        </ul>
+                        <button class="purple">Download for Free</button>
+                    </div>
+                    <div class="content__responsive-container__card">
+                        <h2 class="pink">Second Tier</h2>
+                        <h1 class="pink">1 BTC</h1>
+                        <ul>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                            <li>Items One</li>
+                        </ul>
+                        <button class="">Download for Free</button>
+                    </div>
+                    <div class="content__responsive-container__card bg--purple">
+                        <h2 class="text--white">Highest Tier</h2>
+                        <h1 class="text--white">2 BTC</h1>
+                        <ul>
+                            <li class="text--white">Items One</li>
+                            <li class="text--white">Items One</li>
+                            <li class="text--white">Items One</li>
+                            <li class="text--white">Items One</li>
+                        </ul>
+                        <button class="inverted">Download for Free</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <footer>
+            <div class="footer__ends">
+                <h1 class="text--white">Filler Links</h1>
+            </div>
+            <section class="gallery">
+                <div class="gallery__item">
+                    <img src="./images/tile1.jpg" />
+                    <h1>Picture 1</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile1.jpg" />
+                    <h1>Picture 2</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile3.jpg" />
+                    <h1>Picture 3</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile2.jpg" />
+                    <h1>Picture 4</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile5.jpg" />
+                    <h1>Picture 5</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile4.jpg" />
+                    <h1>Picture 6</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile1.jpg" />
+                    <h1>Picture 7</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile2.jpg" />
+                    <h1>Picture 8</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile3.jpg" />
+                    <h1>Picture 9</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile4.jpg" />
+                    <h1>Picture 10</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile1.jpg" />
+                    <h1>Picture 11</h1>
+                </div>
+                <div class="gallery__item">
+                    <img src="./images/tile1.jpg" />
+                    <h1>Picture 12</h1>
+                </div>
+            </section>
+            <div class="footer__ends">
+                <button>View More Links</button>
+            </div>
+            <section class="foot">
+                <div class="content__responsive-container content__responsive-container--spaced-between">
+                    <div>
+                        <h1>by Robert</h1>
+                        <p class="foot__blurb text--white">
+                            High quality work at a reasonable cost that makes you look more technically savvy than you
+                            are.
+                        </p>
+                    </div>
+                    <div>
+                        <h1>List One</h1>
+                        <ul>
+                            <li>Item One</li>
+                            <li>Item Two</li>
+                            <li>Item Three</li>
+                            <li>Item Four</li>
+                            <li>Item Five</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h1>List Two</h1>
+                        <ul>
+                            <li>Item One</li>
+                            <li>Item Two</li>
+                            <li>Item Three</li>
+                            <li>Item Four</li>
+                            <li>Item Five</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h1>Third List</h1>
+                        <ul>
+                            <li>Item One</li>
+                            <li>Item Two</li>
+                            <li>Item Three</li>
+                            <li>Item Four</li>
+                            <li>Item Five</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h1>Fourth List</h1>
+                        <ul>
+                            <li>Item One</li>
+                            <li>Item Two</li>
+                            <li>Item Three</li>
+                            <li>Item Four</li>
+                            <li>Item Five</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </footer>
+    </div>
+</body>
+
+</html>
