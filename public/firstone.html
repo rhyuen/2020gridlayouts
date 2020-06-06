@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>APR 8, 2020</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            --PADDING: 10px;
+            --MARGIN: 10px;
+            --BACKGROUND_COLOR: #F3F3F3;
+            --CARD_COLOR: white;
+            --OUTLINE_COLOR: rgba(0, 0, 0, 0.1);
+            --PRIMARY_COLOR: black;
+        }
+
+        body {
+            height: 100vh;
+            background: var(--BACKGROUND_COLOR);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(5px, 1fr) repeat(6, minmax(60px, 1fr)) minmax(5px, 1fr);
+            grid-template-rows: 5vh 95vh;
+            height: 100%;
+        }
+
+        nav {
+            display: none;
+            grid-column: 1/-1;
+            background: black;
+            grid-row: span 1;
+        }
+
+        .gutter {
+            grid-column: span 1;
+        }
+
+        main {
+            grid-column: 2/-2;
+            display: grid;
+            grid-template-columns: repeat(6, minmax(60px, 1fr));
+            grid-row: span 1;
+            justify-self: center;
+            max-width: 1200px;
+        }
+
+        aside {
+            grid-column: span 3;
+            background: inherit;
+            padding: var(--PADDING);
+        }
+
+        .left,
+        .right {
+            display: none;
+        }
+
+        .timeline {
+            position: relative;
+            grid-column: span 6;
+            background: var(--BACKGROUND_COLOR);
+            grid-row: span 1;
+            padding: var(--PADDING);
+        }
+
+        .addbutton {
+            position: absolute;
+            cursor: pointer;
+            top: 10%;
+            right: 10%;
+            width: 50px;
+            height: 50px;
+            background: var(--PRIMARY_COLOR);
+            color: var(--BACKGROUND_COLOR);
+            z-index: 5;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            border: 4px solid var(--PRIMARY_COLOR);
+        }
+
+        .addbutton:hover {
+            transition: color 0.2s ease-in-out 0s background 0.2s ease-in-out 0s;
+            background: var(--BACKGROUND_COLOR);
+            color: var(--PRIMARY_COLOR);
+        }
+
+        .timeline article {
+            background: var(--CARD_COLOR);
+            padding: var(--PADDING);
+            margin-bottom: var(--MARGIN);
+            clip-path: polygon(30px 0px, 100% 0px, 100% 100%, 0% 100%, 0% 30px);
+            transition: clip-path 500ms;
+            position: relative;
+        }
+
+        .timeline article:after {
+            content: "";
+            background: rgba(0, 0, 0, 0.1);
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            border-radius: 0 0 5px 0;
+            transition: transform 500ms;
+        }
+
+        .timeline article:hover {
+            clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0% 100%, 0% 0px);
+        }
+
+        .timeline article:hover:after {
+            transform: translate(-100%, -100%);
+        }
+
+        article.side {
+            background: var(--BACKGROUND_COLOR);
+            padding: var(--PADDING);
+            margin-bottom: var(--MARGIN);
+        }
+
+        article h1 {
+            margin: var(--MARGIN) 0;
+        }
+        article p{
+            font-size: .85em;
+            line-height: 1.5;
+        }
+
+        footer{
+            margin: var(--MARGIN);
+            padding-top: var(--PADDING);
+            border-top: 1px solid var(--OUTLINE_COLOR);            
+            display: flex;
+        }
+        footer *{
+            margin-right: var(--MARGIN);
+            color: var(--OUTLINE_COLOR);
+            font-size: 0.8em;
+        }
+
+        @media screen and (min-width: 560px) and (max-width: 779px) {
+            * {
+                font-size: 18px;
+                --PADDING: 15px;
+                --MARGIN: 15px;
+            }
+
+            nav {
+                display: block;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: minmax(5px, 1fr) repeat(9, minmax(60px, 1fr)) minmax(5px, 1fr);
+                height: 100%;
+            }
+
+            main {
+                grid-template-columns: repeat(9, minmax(60px, 1fr));
+            }
+
+            aside.right {
+                display: block;
+            }
+        }
+
+        @media screen and (min-width: 780px) {
+            * {
+                font-size: 20px;
+                --PADDING: 20px;
+                --MARGIN: 20px;
+            }
+
+            nav {
+                display: block;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: minmax(5px, 1fr) repeat(12, minmax(60px, 1fr)) minmax(5px, 1fr);
+                grid-template-rows: 5vh 95vh;
+                height: 100%;
+            }
+
+            main {
+                grid-template-columns: repeat(12, minmax(60px, 1fr));
+            }
+
+            aside.right {
+                display: block;
+            }
+
+            aside.left {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <nav>
+            nav
+        </nav>
+        <div class="gutter"></div>
+        <main>
+            <aside class="left">
+                <article class="side">
+                    <h1>User Name</h1>
+                    <p>Some self agrandizing text that proclaims how awesome one is, without mentioning any significant
+                        faults.</p>
+                </article>
+            </aside>
+            <section class="timeline">
+                <div class="addbutton">
+                    +
+                </div>
+                <article>
+                    <h1>Title</h1>
+                    <p>Those four values in inset() (in the CSS above) represent the top/left point and the bottom/right
+                        point, which forms the visible rectangle. Everything outside of that rectangle is hidden.</p>
+                </article>
+                <article>
+                    <h1>Title</h1>
+                    <p>The clip-path property in CSS allows you to specify a specific region of an element to display,
+                        rather than showing the complete area. There used to be a clip property, but note that is
+                        deprecated.</p>
+                </article>
+                <article>
+                    <h1>Backdoiir</h1>
+                    <p>Other ways to extend it is to include the malicious module as a dependency for other packages. If the attacker has the publication permissions in other key packages, they can publish a new version that includes a dependency with the malicious package directly (check out event-stream postmortem). Alternatively,  they can try to contribute a pull request to a project with malicious resources in the lockfile, as was described in the research about lockfile security dependency in the package-lock. </p>
+                </article>
+                <article>
+                    <h1>STDOUT</h1>
+                    <p>After a backdoor is installed, specific commands have to be sent in order to be executed in the target machine. Those commands can exfiltrate sensitive information like environment variables or database injections. What’s more, those commands can alter other processes on the machine or the network, depending on the execution permissions that our infected Node application has.</p>
+                </article>
+                <article>
+                    <h1>Preamble</h1>
+                    <p>A backdoor in our code that can perform OS injection is one of the most scary scenarios ever. Currently, npm has more than 1.2M of public packages available. For the last 3 years, our dependencies have become the perfect target for cybercriminals. We saw many new attacks going live, like typosquatting attack or event-stream incident, confirming that our ecosystem can be very fragile, if we don’t build a stronger community. In this post I’ll show you how we can combine some techniques and end up having a malicious backdoor in the ecosystem.</p>
+                </article>
+                <article>
+                    <h1>Async/Await</h1>
+                    <p>But it won’t work with loops that require a callback. Examples of such loops that require a fallback include forEach, map, filter, and reduce. We’ll look at how await affects forEach, map, and filter in the next few sections.</p>
+                </article>
+                <article>
+                    <h1>With Map</h1>
+                    <p>If you use await in a map, map will always return an array of promise. This is because asynchronous functions always return promises.</p>
+                </article>                
+            </section>
+            <aside class="right">
+                <article class="side">
+                    <h1>Corona 2020</h1>
+                    <p>Some corona stats and data visualizations.</p>
+                </article>
+                <article class="side">
+                    <h1>Corona Philanthropy</h1>
+                    <p>Plutocrat allocates a significant sum of money towards Corona effort.</p>
+                </article>
+                <article class="side">
+                    <h1>Massive Unemployment</h1>
+                    <p>Economic stimulus used to stave off massive layoffs.</p>
+                </article>                
+                <footer>
+                    <span>about</span>
+                    <span>contact</span>
+                    <span>sources</span>                    
+                </footer>
+            </aside>
+        </main>
+        <div class="gutter"></div>
+    </div>
+</body>
+
+</html>
