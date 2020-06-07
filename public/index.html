@@ -108,12 +108,12 @@
         .grid__hero__container h1 {
             font-size: 3rem;
             color: var(--TEXT);
-            width: clamp(500px, 700px, 50%);
+            width: clamp(1fr, 700px, 50%);
             margin-bottom: 0;
         }
 
         .grid__hero__container h2 {
-            width: clamp(500px, 700px, 50%);
+            width: clamp(1fr, 700px, 50%);
             font-size: 1.5rem;
             color: lightgrey;
             margin-top: 0;
@@ -125,7 +125,7 @@
         main {
             grid-column: content-start/content-end;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             grid-template-rows: 400px;
             grid-auto-rows: 400px;
             grid-gap: var(--SPACE_BASE);
@@ -178,39 +178,39 @@
         </div>
         <main>
             <article>
-                <h3><a href="/public/firstone.html">First One</a></h3>
+                <h3><a href="/firstone.html">First One</a></h3>
                 <h4>2020, April 8</h4>
             </article>
             <article class="mint">
-                <h3><a href="/public/ltr.html">PS5 GUI</a></h3>
+                <h3><a href="/ltr.html">PS5 GUI</a></h3>
                 <h4>2020, April 10</h4>
             </article>
             <article class="peach">
-                <h3><a href="/public/applemusic.html">Apple Music</a></h3>
+                <h3><a href="/applemusic.html">Apple Music</a></h3>
                 <h4>2020, April 18</h4>
             </article>
             <article>
-                <h3><a href="/public/codrops.html">Codrops Homepage</a></h3>
+                <h3><a href="/codrops.html">Codrops Homepage</a></h3>
                 <h4>2020, April 21</h4>
             </article>
             <article class="peach">
-                <h3><a href="/public/20-05-21.html">Dribble Mockup</a></h3>
+                <h3><a href="/20-05-21.html">Dribble Mockup</a></h3>
                 <h4>2020, May 20</h4>
             </article>
             <article>
                 <h3>
-                    <a href="/public/20-05-21-scrolldown.html">
+                    <a href="/20-05-21-scrolldown.html">
                         Another Dribble Mockup
                     </a>
                 </h3>
                 <h4>2020, May 25</h4>
             </article>
             <article class="mint">
-                <h3><a href="/public/frame.html">Generic 3 Column Layout</a></h3>
+                <h3><a href="/frame.html">Generic 3 Column Layout</a></h3>
                 <h4>2020</h4>
             </article>
             <article>
-                <h3><a href="/public/tracker.html">Demo Page for Custom Tracking</a></h3>
+                <h3><a href="/tracker.html">Demo Page for Custom Tracking</a></h3>
                 <h4>2020</h4>
             </article>
         </main>
