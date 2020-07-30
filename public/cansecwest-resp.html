@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CanSecWest</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #F3f3f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --NUM_COL: 6;
+            --SPACE_BASE: 20px;
+        }
+
+        nav {
+            grid-column: 1/-1;
+        }
+
+        section.hero {
+            grid-column: 1/-1;
+            position: relative;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            left: 0;
+            background: rgba(0, 0, 0, 0.4);
+            width: 50%;
+            height: 100%;
+        }
+
+        .hero__overlay__text {
+            display: flex;
+            flex-direction: column;
+            color: white;
+            font-size: 1.2rem;
+            max-width: 540px;
+            padding: var(--SPACE_BASE) 0;
+            padding-right: var(--SPACE_BASE);
+            right: 0;
+            position: absolute;
+        }
+
+        .hero__image {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .blog {
+            background: white;
+            height: 100%;
+        }
+
+        .blog__article {
+            margin: calc(2*var(--SPACE_BASE));
+            padding-bottom: calc(2*var(--SPACE_BASE));
+            border-bottom: 1px solid black;
+        }
+
+        .blog__article:last-child {
+            border-bottom: 1px solid transparent;
+        }
+
+        main {
+            grid-column: content-start/span 9;
+
+        }
+
+        aside {
+            display: none;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 10vh 40vh 1fr;
+            grid-template-columns: minmax(10px, 1fr) [content-start] repeat(var(--NUM_COL), minmax(auto, 90px)) [content-end] minmax(10px, 1fr);
+        }
+
+        .nav--centered {
+            margin: 0 auto;
+            max-width: 1080px;
+            display: flex;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__container {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav__link {
+            text-transform: uppercase;
+            text-decoration: none;
+            color: black;
+            font-weight: 600;
+            margin-left: var(--SPACE_BASE);
+            padding-bottom: calc(0.5*var(--SPACE_BASE));
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.2s linear 0s;
+        }
+
+        .nav__link:hover {
+            border-bottom: 2px solid black;
+        }
+
+        .nav__link--home {
+            color: #ba0000;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+        }
+
+        .article__body--quote {
+            font-size: 0.8rem;
+            padding: calc(0.8*var(--SPACE_BASE));
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .article__body__link {
+            text-decoration: none;
+            color: #ba0000;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.2s linear 0s;
+        }
+
+        .article__body__link:hover {
+            border-bottom: 2px solid #ba0000;
+        }
+
+        .sponsors {
+            margin-top: var(--SPACE_BASE);
+        }
+
+        .sponsors img {
+            width: 80%;
+            object-fit: contain;
+            margin-bottom: calc(2*var(--SPACE_BASE));
+        }
+
+        @media screen and (max-width: 1019px) and (min-width: 750px) {
+            * {
+                --NUM_COL: 9
+            }
+
+            main.blog {
+                grid-column: [content-start]/[content-end]
+            }
+
+            aside.sponsors {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 1020px) {
+            * {
+                --NUM_COL: 12;
+            }
+
+            main.blog {
+                grid-column: content-start/span 9;
+            }
+
+            aside.sponsors {
+                display: block;
+                padding-left: calc(4*var(--SPACE_BASE));
+                grid-column: span 3/content-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <nav>
+            <div class="nav--centered">
+                <span class="nav__container">
+                    <a href="/" class="nav__link--home">
+                        <img src="./images/cswlogo.png" alt="cansecwest logo">
+                    </a>
+                    &nbsp;
+                    <a href="/" class="nav__link--home">
+                        CanSecWest Vancouver 2020
+                    </a>
+                </span>
+                <span class="nav__container">
+                    <a href="/" class="nav__link">Conference</a>
+                    <a href="/" class="nav__link">Speakers</a>
+                    <a href="/" class="nav__link">Dojo</a>
+                    <a href="/" class="nav__link">Agenda</a>
+                    <a href="/" class="nav__link">Slides</a>
+                    <a href="/" class="nav__link">Hotel/Travel</a>
+                    <a href="/" class="nav__link">Contact</a>
+                </span>
+            </div>
+        </nav>
+        <section class="hero">
+            <div class="hero__overlay">
+                <div class="hero__overlay__text">
+                    <h1>CanSecWest 2020</h1>
+                    <p>The 21st annual CanSecWest conference will be held March 18-20, 2020 at the Sheraton Wall Centre
+                        hotel
+                        in downtown Vancouver, British Columbia, Canada.</p>
+
+                    <p>For the info about Pwn2Own, please check here.</p>
+
+                    <p>Registration is available: here.</p>
+                </div>
+            </div>
+            <img src="./images/city.jpg" class="hero__image"
+                alt="long exposure of city so you can see trails of lights">
+        </section>
+        <main class="blog">
+            <article class="blog__article">
+                <h2>
+                    Interact with the security community
+                </h2>
+                <p>
+                    CanSecWest, the world's most advanced conference focusing on applied digital security, is about
+                    bringing the industry luminaries together in a relaxed environment which promotes collaboration and
+                    social networking. The conference lasts for three days and features a single track of thought
+                    provoking presentations, each prepared by an experienced professional and talented educator who is
+                    at the cutting edge of his or her field. We give preference to new and innovative material,
+                    highlighting important, emergent technologies, techniques, or best industry practices.
+                </p>
+                <p>
+                    The conference is single track, with one hour presentations over the duration beginning at 9:00 a.m.
+                    The registration fee includes the catered meals, and there will be a vendor display and
+                    lounge/eating area, where wireless internet access will be available (as well as in the speaking
+                    theater).
+                </p>
+            </article>
+            <article class="blog__article">
+                <h2>
+                    Hybrid CanSecWest
+                </h2>
+                <p>
+                    REMOTE ATTENDEES:
+                </p>
+                <p>
+                    There will be a remote CanSecWest speaker locker room pre-conference on Tuesday, March 18 at 16:00
+                    PST, instructions will be emailed shortly.
+                </p>
+                <p>
+                    Instructions and confirmation will be emailed to attendees as soon as we can on Monday or Tuesday.
+                    Attendees are asked to please send email to CanSecWestCore@gmail.com with the email addresses and
+                    preferrably Signal numbers (optional but desirable for backup contact) for the attendance and
+                    invitation list.
+                </p>
+                <p>
+                    PWN2OWN @ CanSecWest is switching to full remote for this year.
+                </p>
+                <p>
+                    The team there is adjusting as best and as quickly as they can. We plan to be posting update videos,
+                    and information from the contest on our remote conference stream. The ZDI blog will list new details
+                    shortly. We are all collaborating furiously to pull it all together under tight deadlines. The team
+                    at Trend Micro is doing an amazing job under ever changing and dynamic conditions, and I am grateful
+                    for their continuing support and amazing skills.
+                </p>
+                <p>
+                    We are actually building a pretty interesting virtual show, under the gun, but the content is
+                    falling into place, we'll have remote and local participant panels in the breaks between
+                    presentations, some fun attendee contests and more. It would have been nicer to get more preparation
+                    time, but the folks pulling it together are doing an amazing job, on both remote courses, and our
+                    new virtual hybrid conference.
+                </p>
+                <p>
+                    We will be offering a 25% discount on CanSecWest 2021 registrations for folks whose travel and risk
+                    reduction restrictions preclude physical participation this year and need to switch their
+                    registration to remote tickets. And one notes their allies, friends and supporters the most in the
+                    difficult times most of all, so all who are registered this year get a 15% discount on next year.
+                    For folks who are locked into travel with non-refundable tickets, and whose personal situations and
+                    locations place them in lower risk categories and are among the folks who will persevere and travel
+                    either locally or are in lower risk demographics, we will not cancel on our commitments, we will be
+                    putting on a smaller, safer show, locally and remotely. Folks from high-risk locations and among
+                    threatened demographics switching to remote or cancelling is a blessing and a curse here.
+                </p>
+                <p>
+                    Currently IMHO I feel privileged to live in Canada, as aggressive testing and contact tracing
+                    building on our learning experiences with the previous SARS outbreak has led to a successful
+                    containment so far here - the odds of coming across virus exposure currently in BC with less than 40
+                    cases among a population of 5 million are currently lower than your odds of being killed by
+                    lightning, to temper folk's risk assesments among the sea of hyperbole we are being subjected to,
+                    and you have much better odds of winning money in the provincial lottery still. IMHO aggressive
+                    testing is the key in this situation, and the difference between safe locales and higher risk lies
+                    in visibility, data, and information to guide folk's response and plans - Korea, China, Canada and
+                    other places that have ramped up testing, promoted mask use, and let folks have the tools to deal
+                    with it tactically seem to have gotten it right with their strategies. I wish us all good luck, and
+                    a reminder than panic is never a good option. Clean hands, masks on, and open hearts - stay calm,
+                    and safe.
+                </p>
+                <p>
+                    Now we still have a tremendous amount of work to do with this newfangled kind of event in this
+                    dynamic situation next week, so off we go. On the upside, we are looking at this as an opportunity
+                    to craft a new kind of event, local and remote, removing more of our geophysical boundaries.
+                </p>
+                <p>
+                    REMOTE UPDATE
+                </p>
+                <p>
+                    Well the real world may be filled with uncertainty, but the virtual world marches on.
+                </p>
+                <p>
+                    We are proceeding to attempt make CanSecWest Remote the coolest on-line infosec educational resource
+                    we can, and the best virtual party attempted so far.
+                </p>
+                <p>
+                    We are upping the passes so that anyone who has switched to a virtual attendance gets four remote
+                    seats for their co-workers and friends.
+                </p>
+                <p>
+                    Anyone who has ever been a volunteer, dojo instructor, presenter, or otherwise helped out at any of
+                    our conferences also is eligible complementary attendance to this virtual shindig, message me here
+                    with your email address for the conf invite and preferrably a signal number as some of the
+                    co-ordination is happening on that platform, cc cansecwestcore@gmail.com with that info and we'll
+                    get you on "the list."
+                </p>
+                <p>
+                    We will also be extending liberal remote passes for our sponsors, we'll contact your folks early
+                    next week.
+                </p>
+                <p>
+                    This all feels like a time warp back to 15 years ago when we didn't really plan very much and things
+                    were very chaotic. Any plans you make today seem to obsolete tomorrow, we just ripped up all our
+                    event sheets with the hotel and are redoing our new plans for the remaining who will persevere, and
+                    our remote broadcast team. If anyone local wants to come help out with the remote conference
+                    management and learn with us on this brave new "technical adventure," ping me. Oddly, due to our
+                    earlier experiences with chaotic rapidly deployed arrangements this is a situation we are very
+                    practiced at and feels vaguely familiar from a long time ago.
+                </p>
+                <p>
+                    Keith M Myers will be playing some virtual music sets on the evening part of this stream which is on
+                    PST times. Going to reach out to a few other of the usual DJ villains to see about queing them up
+                    for the evening part of the broadcast, so folks stuck at home not going anywhere can pour a glass of
+                    scotch, or a shot of tequila (It's not just for breakfast anymore), and join what will be likely
+                    multiple virtual rooms to mingle with peers while you are stuck telecommuting from home.
+                </p>
+                <p>
+                    We will update the website shortly with more instructions and the at least 4-5 new remote
+                    presentations we are adding to the new longer and fuller remote stream agenda, and I am taking this
+                    opportunity to call out to our Dojo instructors for courses that have cancelled, or even our past
+                    instructors to see if they are interested in doing little short mini-trainings (tentatively planning
+                    on 15 min) as samples of their longer training material for attendees during the duration of the
+                    conferences, potentially in parallel at the same time as the virtual party track in the evening. We
+                    are still taking submissions for more remote sessions as the remote format allows us more timeslots
+                    for presentations and easily added virtual sub-groups, message me directly with your pitch. Got a
+                    cool infosec related idea you want to try with a remote group, tell me about it, the agenda is being
+                    built very dynamically. Also still taking applications for folks to join the content co-ordination
+                    and wrangling team, even remotely, so if you are interested in participating in the back end of this
+                    evolving idea contact me as well if you have some time you can spend helping out Tue-Wed next week.
+                </p>
+                <p>
+                    The conference will feature a single track speaker presentation meeting stream and at least one
+                    "hallway track" meeting for attendees to mingle as well as many interactive panels and discussions
+                    as we can manage. We may also have break-out topical subgroups in the time the main stream is not
+                    active.
+                </p>
+                <p>
+                    The other upside to just having hauled the gear for 500 person conferences to the hotel that is no
+                    longer needed, is that our remote streaming control room will have a ridiculously overkill stereo
+                    system and av setup. The much smaller viewing and interaction areas for the remote streams for
+                    locally present folks will also benefit from our killing a fly with an RPG tech overkill. Never a
+                    dull moment.
+                </p>
+                <p>
+                    Way back in 2001 we were the first conference that I know of that attempted conference wide WiFi, we
+                    have been pioneers in bug bounties, discussions of many classes of vulns and tried new approaches in
+                    so many other ways. We certainly intend to be pioneers in remote interactions... because it seems
+                    many folks will be limited to those for the next few months. Onward and upward.
+                </p>
+            </article>
+            <article class="blog__article">
+                <h2>
+                    2020-03-09-22:00:00 2020 Speakers
+                </h2>
+                <p>
+                    Keynote Presentation: "Funneling Trust: Designing Better Database Access" Rhett Greenhagen and Rob
+                    Ragan, Bishop Fox
+                    "Security Awareness of Emergency Alert Apps" Marc Schoenefelld, Oracle
+                    "TeleHammer: A New Rowhammer Technique To Break ALL Existing Defenses" Yueqiang Cheng and Zhi Zhang,
+                    Baidu Xlab Sunnyvale and University of New South Wales(video remote)
+                    "The ARM-X Firmware Emulation Framework" Saumil Shah, Net-Square
+                    "Tools and Techniques for Cognitive Security" Sara-Jayne Terp, Bodacea Light Industries & Roger
+                    Johnston, Ubisoft
+                    "Software Mitigations for Hardware Vulnerabilities" Antonio Gomez Inglacias, Intel (video remote)
+                    "Hacking Playstation Blue Ray Drives" Boris Larin, Kaspersky
+                    "Remixing Threat-Intelligence to Find Threats" Sebastien Tricaud, Devo
+                    "RFQuack - Cheap and easy RF analysis Andrea Guglielmini (video remote)
+                    "Super-root: A Powerful and Stealthy Technique to Hack ARM Devices" Yueqiang Cheng and Zhi Zhang,
+                    Baidu Xlab Sunnyvale and University of New South Wales (video remote)
+                    "Hacking Tesla Model 3 - NFC Relay Revisit" Huajiang "Kevin2600" Chen, Ingeek Vehicle Security
+                    Research Lab(video remote)
+                    "Inside Hidden Cobra, a look at Nation States' Cyber Offensive Programs" Ryan Sherstobitoff and
+                    Thomas Roccia, McAfee
+                    "The Risk of AI Abuse: Towards Deepfake Attacks and Defenses" Mengyun Tang, Ge Pei, Wen Zhou,
+                    Tencent (video remote)
+                    "A Transparent Look At Multi-Party Vulnerability Disclosure" Bruce Monroe, Intel(video remote)
+                    Nova Award Speaker: "Practical Exploitation of Insecure Randomness" Nathaniel Lattimer, Cruise
+                    A small note of thanks to our sponsors: The companies on the sidebar, all have graciously supported
+                    this conference and the security community for decades now. A big shoutout to them for the
+                    assistance they provide in making conferences like ours happen, and indeed enabling whole open
+                    international security community to interact and function to secure our world and make our
+                    information infrastructure a better place.
+                </p>
+            </article>
+            <article class="blog__article">
+                <h2>
+                    2020-03-09-10:00:00 COVID-19 Precautions
+                </h2>
+                <p>
+                    So CanSecWest is coming up soon.
+                </p>
+                <p>
+                    We've been watching the recent developments carefully, and working to put in several new features we
+                    have never tried before and are changing some aspects dramatically. Bear with us, we are shooting
+                    from the hip too, and all in all, we think we've been able to scrape up a pretty good response with
+                    a dynamic situation. Folks say the key to leadership in situations like these is rapid, clear,
+                    information dissemination, and calm, logical preparations. So here is what's going on....
+                </p>
+                <p>
+                    We've put in a full virtualization team, and are drastically adjusting some parameters, read on....
+                    If this is the new normal for the next while, we intend to make this experience as close to a model
+                    of reduced risk social group interactions as we can.
+                </p>
+                <p>
+                    At the end of the day I think the folks we get at our conferences are some of the most responsible
+                    and intelligent folks on the planet, and if there is any group I would trust with the social
+                    awareness to show the responsibility to stay back and self-isolate if they have any inkling of
+                    symptoms, fever, cough, even a runny nose, it's the infosec community that attends our conferences.
+                    One of the reasons we do what we do is because the folks we interact with in our community really
+                    are some of the world's finest and most competent whom we rely on in positions of trust. The
+                    percentages of folks who are really asymptomatic is, contrary to some fearful exclamations, very
+                    low, around 1% by all the data published so far. In any cases where there was any asymptomatic
+                    transmission, the folks involved did eventually see symptoms. New data suggests that the median
+                    symptom onset (50%) is 5.1 days (with over 97% at less than 11 days, and almost all by 14 days), and
+                    nearly all of the cases include fever as a primary symptom. So monitoring those is crucial as we see
+                    it, and are putting in IR camera temperature monitoring, and stringent requests of attendees to
+                    redouble caution and withdrawal in case of _any_ illness. All our desks will have IR thermometers in
+                    case of any doubts available for checks.
+                </p>
+                <p>
+                    We will have masks, hand sanitizer stations, and sanitizer bottles (but still recommend hand washing
+                    frequently as preferrable), as well as alcohol wipes for attendees for their own area sanitization.
+                    We will recommend that masks be the default at conference activities, and will have a keynote on
+                    proper sanitization, and mask use and safe removal and disposal from a registered nurse.
+                </p>
+                <p>
+                    That said, we will however implement a different kind of conference this year as a dynamic response:
+                </p>
+                <p>
+                    For the first time ever we will allow folks to remotely attend the conference in full "virtual
+                    mode." We can't get enough telepresence robots to make it practical for individuals :-) but we are
+                    putting in a team of folks to function as camera folks, producers, remote support team, bringing in
+                    special equipment and a running tech trials already and the rest of the week to make sure it will
+                    run smoothly. It's a little like a live event TV broadcast, something I do happen to know a bit
+                    about after having worked in that industry. We will have some more announcements about this after
+                    our technology tests are complete.
+                    We are doing a record number of remote presentations, which is putting in a lot more prep logistics
+                    for our new expanded team. All the folks coming to present from any high risk areas and folks with
+                    corporate travel restrictions are switching to remote presentations and virtual attendance. We will
+                    have infrastructure and operators to have cameras in the audience for questions, and the presenters
+                    will be able to see their audiences for live q/a and reactions.
+                    One of our most popular courses, the Baseband Dojo, has an Israeli instructor (see news about recent
+                    travel restrictions). We have mobilized our virtual team this weekend and arranged for a remote
+                    course for him, with a local TA, and conference cams for all the students. This involved quite a bit
+                    of logistics to make sure that the course equipment which has been bouncing back and forth in
+                    shipments was located and redirected and backup equipment arranged in case of issues.
+                    We will remote enable five Dojos, and allow registrants to join locally or remotely:
+                    Nitay Artenstein: Practical Baseband Exploitation
+                    John Bambenek: Hunting the Adversary, Applying Cyber-Threat Intelligence
+                    Josh Watson: Automated Reverse Engineering with Binary Ninja
+                    Ashfaq Ansari: Windows Kernel Exploitation, Foundations
+                    Ashfaq Ansari: Windows Kernel Exploitation, Advanced
+                    For the dojos and the conference in general we have adjusted our seating arrangements to attempt to
+                    follow "social distancing" guidelines, and are placing all the seating with a preferrence for a
+                    minimum of 1 meter apart (roughly the primary danger zone for coughs and sneezes). In the main hall
+                    we will shoot for 2-3 meter seat spacing, a benefit of the mixed blessing of putting a few hundred
+                    folks in a room that seats 800. We are also recommending mask usage using supplied masks at the
+                    dojos and conference, and related events as a pre-emptive precaution.
+                    We have adjusted all catering to eliminate shared serving utensil handling, to minimize risk as much
+                    as possible, as well as increasing seating area social distancing at eating areas.
+                    The Party: Originally we had booked a night club on Granville Street, called The Venue, with a "DJ
+                    Dojo" and interactive DJ competition and tutorial for the partygoers on Thursday night. We are
+                    cancelling and shifting/moving this event. Our goal is to adjust this event to minimize the need for
+                    confined conversation in close quarters, so a loud, dim, dark bar is probably not the right answer.
+                    We are going to take a financial hit and cancel the paid for event. However we still have a few
+                    hundred folks who will wish to socialize, and we want to facilitate that in the safest possible
+                    environment we can manage. So we are setting up the "DJ Dojo," in a large well lit area with lots of
+                    space, with inflatable, easy to sterilize with alcohol inflatable plastic furniture, and chairs and
+                    tables so folks can interact without having to yell at each other in close quarters in a loud, dark,
+                    bar. We are planning on serving snacks and alcohol in disposable individual serving containers (no
+                    hastily washed serving glass reuse, or tongs with food from bowls) in our larger lounge space, and
+                    going to make it a LAN party with music instead where folks can still interact, but with safer
+                    "social distancing." We will allow short lightning talk presentations at the party, from local as
+                    well as remote attendees. We will have a remote conferencing telepresence party area in the room
+                    with autofollowing cameras and speakers where the local attendees can interact with any remote
+                    folks. Still working out the details here, and we'll announce them as they resolve.
+                    At this time we still see the overall risk in Canada of transmission as low. Canada has been
+                    agressively testing, and overall rapid ramp up of testing IMHO seems to be the key to containment.
+                    China has managed this quite well. The Korean rapid roll-out of testing seems to be also paying off
+                    as their numbers of new cases continue to decline. The situation in BC is still low risk - the only
+                    case of concern at the moment is a single one (with likely multiple case fallout expected amongst
+                    other residents and staff there) of seniors at the Lynn Valley center in North Vancouver - which is
+                    still being traced since it was announced on Thursday of last week. Mindful of earlier SARS
+                    experience, BC has implemented agressive contact tracing and readily available testing at all the
+                    handful of outbreaks, and has so far been successful at avoiding unconstrained spreading.
+                </p>
+                <p>
+                    We have arranged some RT-PCR testing should it become necessary, or optionally desireable by any
+                    attendees, at a medical clinic next to the hotel for any verification, but have switched the
+                    presenter we were concerned about before to a remote presentation to further minimize the risk.
+                </p>
+                <p>
+                    As usual we continue monitoring the situation closely, and reacting dynamically as necessary, and
+                    hold cautious hopes for better news for everyone from the trials of remdesivir and camostat. We also
+                    advise folks to consider how to best isolate any at risk elderly male smokers or ex-smokers.
+                </p>
+                <p>
+                    Clean hands, masks on, open hearts, and we will all do our best to persevere even in adversity.
+                </p>
+            </article>
+            <article class="blog__article">
+                <h2>
+                    Nova Speaker Competition
+                </h2>
+                <p>
+                    CanSecWest Nova Competition(*)
+                </p>
+                <p>
+                    A statement from my friend Kevin Johnson got me thinking about submissions and trainings we have at
+                    CanSecWest. His assertion was that the submissions for CanSecWest are intimidating. We do get some
+                    really bright folks presenting, and typically you need something new and significant, but at the
+                    same time as I pondered this, I was being vaguely irritated that companies don't allocate training
+                    budgets for more advanced courses like we have in our Dojo trainings on younger more junior
+                    employees, saving the trip for the training course as a perk for the more senior employees. Most of
+                    the folks we get in our courses are more experienced folks. And I think that companies should be
+                    allowing employees with promise to expand their skills and support even their more junior staffers
+                    going to expand their security knowledge through training.
+                </p>
+                <p>
+                    So here is my little nod to both of those in one, I'm going to reserve a talk slot for the best
+                    paper by a new presenter, age 25 or under, in a special separate selection, judged by our talk
+                    committee. I'm also going to give a free course admission to a dojo course for the top four
+                    submission proposals (including the winner and presenter). So if you have a bright promising new
+                    researcher at your company who has been working on something cool, maybe be a mentor, and point out
+                    this opportunity for them.
+                </p>
+                <p>
+                    Submit proposals and entries by February 10th to secwest20@cansecwest.com
+                </p>
+                <p>
+                    (and cc: cansecwestcore@gmail.com)
+                </p>
+                <p>
+                    The bonus will be that everyone who submits will also get a discount code for a 10% discount on a
+                    CanSecWest registration.
+                </p>
+                <p>
+                    (Fine print, limit one per course, selection in order of ranking)
+                </p>
+                <p>
+                    (*)Nova was a term coined by astronomer Tycho Brahe for a "new star" after he observed a supernova
+                    in 1752
+                </p>
+            </article>
+        </main>
+        <aside class="sponsors">
+            <article>
+                <h2>Sponsors</h2>
+
+                <img src="./images/trendmicro.png" alt="trend micro logo">
+                <img src="./images/zdi.png" alt="zero day initiative logo">
+
+                <img src="./images/exodus.png" alt="exodus logo">
+            </article>
+            <!-- <article>
+                <h3>Platinum Sponsors</h3>
+            </article>
+            <aritcle>
+                <h3>Supporter Sponsors</h3>
+            </aritcle>-->
+            <article>
+                <h3>More Information:</h3>
+                <p class="article__body--quote">
+                    <a href="/" class="article__body__link">Sponsorship Information</a>
+                </p>
+            </article>
+            <article>
+                <h3>Wise Words</h3>
+                <p class="article__body--quote">
+                    "Sen Sen No Waza - to strike the opponent after he has formed the intention to attack and has
+                    committed to a specific motion."
+                </p>
+            </article>
+        </aside>
+    </div>
+</body>
+
+</html>
